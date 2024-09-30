@@ -7,7 +7,15 @@
 </head>
 <body>
     <h1>ダッシュボード</h1>
-    <p>ようこそ、<%= user.nome_usuario %>さん！</p>
+    <p>ようこそ、<%= user.nome_usuario %>さん！ID: <%= user.id_perfil %></p>
+    <form action="/events/create" method="POST">
+        <label for="title">イベントタイトル:</label>
+        <input type="text" name="title" required>
+        <label for="date">日付:</label>
+        <input type="date" name="date" required>
+        <button type="submit">イベントを作成</button>
+    </form>
+    <p>you are <%= user.nome_usuario %>さん！</p>
     <form action="/events/create" method="POST">
         <label for="title">イベントタイトル:</label>
         <input type="text" name="title" required>
