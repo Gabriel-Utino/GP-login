@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ダッシュボード</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <h1>ダッシュボード</h1>
+    <p>ようこそ、<%= user.nome_usuario %>さん！</p>
+    <form action="/events/create" method="POST">
+        <label for="title">イベントタイトル:</label>
+        <input type="text" name="title" required>
+        <label for="date">日付:</label>
+        <input type="date" name="date" required>
+        <button type="submit">イベントを作成</button>
+    </form>
+    <a href="/logout">ログアウト</a>
+</body>
+</html>

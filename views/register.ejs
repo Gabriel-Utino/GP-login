@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>登録</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <h1>アカウントを作成する</h1>
+    <% if (message.length > 0) { %>
+        <p><%= message %></p>
+    <% } %>
+    <form action="/register" method="POST">
+        <label for="nome_usuario">名前:</label>
+        <input type="text" name="nome_usuario" required>
+        <label for="cpf_usuario">CPF:</label>
+        <input type="text" name="cpf_usuario" required>
+        <label for="email_usuario">メールアドレス:</label>
+        <input type="email" name="email_usuario" required>
+        <label for="senha">パスワード:</label>
+        <input type="password" name="senha" required>
+        <button type="submit">登録</button>
+    </form>
+    <p><a href="/login">ログインする</a></p>
+</body>
+</html>

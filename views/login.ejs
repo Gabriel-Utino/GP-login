@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ログイン</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <h1>ログイン</h1>
+    <% if (message.length > 0) { %>
+        <p><%= message %></p>
+    <% } %>
+    <form action="/login" method="POST">
+        <label for="email_usuario">メールアドレス:</label>
+        <input type="email" name="email_usuario" required>
+        <label for="senha">パスワード:</label>
+        <input type="password" name="senha" required>
+        <button type="submit">ログイン</button>
+    </form>
+    <p><a href="/register">アカウントを作成する</a></p>
+</body>
+</html>
