@@ -27,7 +27,11 @@ exports.login = async (req, res) => {
     req.session.user = {
       id_usuario: user.id_usuario,
       nome_usuario: user.nome_usuario,
+      cpf_usuario: user.cpf_usuario,
+      endereco_usuario: user.endereco_usuario,
+      telefone_usuario: user.	telefone_usuario,
       email_usuario: user.email_usuario,
+      nascimento_usuario: user.nascimento_usuario,
       id_perfil: user.id_perfil
     };
 

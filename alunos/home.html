@@ -1,16 +1,35 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="pt-br">
 
 <head>
-  <meta charset="UTF-8">
-  <title>ダッシュボード</title>
-  <link rel="stylesheet" href="/public/css/styles.css">
-  <link rel="stylesheet" href="/public/css/bootstrap.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home</title>
+  <!-- 追加：外部のスタイルシート -->
+  <!-- <link rel="stylesheet" href="styles/professores.css" /> -->
+  <!-- <link rel="stylesheet" href="styles/style.css" /> -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link rel="stylesheet" href="../../css/bootstrap.css">
+  <!-- Bootstrap Datepicker CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"
+    rel="stylesheet">
+  <style>
+    .icon-container {
+      text-align: center;
+      margin: 20px;
+    }
+
+    .icon-container img {
+      width: 100px;
+      height: 100px;
+      margin: 10px;
+    }
+  </style>
 </head>
 
 <body>
-
 
   <!-- ナビゲーションバーのコードを貼り付け -->
   <nav class="navbar navbar-dark bg-dark fixed-top" style="background-color: transparent">
@@ -92,101 +111,71 @@
         </div>
       </div>
       <a href="home.html" class="mx-auto d-block">
-        <img src="/icons/smartclass.png" alt="smartclassIcon" class="img-home">
+        <img src="../../icons/smartclass.png" alt="smartclassIcon" class="img-home">
       </a>
     </div>
   </nav>
 
 
-  <h1>ダッシュボード</h1>
-  <p>ようこそ、<%= user.nome_usuario %>さん！%></p>
-  <form action="/events/create" method="POST">
-    <label for="title">イベントタイトル:</label>
-    <input type="text" name="title" required>
-    <label for="date">日付:</label>
-    <input type="date" name="date" required>
-    <button type="submit">イベントを作成</button>
-  </form>
 
 
 
 
-  <p><%= user.nome_usuario %>さん！</p>
-
-
+  <!-- 以下、ベースのHTMLファイルのコンテンツを続ける -->
   <div class="container">
     <div class="row">
-      <div class="col-md-6 offset-md-3">
-        <div class="card">
-          <div class="card-header">
-            <% if (user.id_perfil === 1) { %>
-              <p>Administrador Profile</p>
-            <% } else if (user.id_perfil === 2) { %>
-              <p>Professor Profile</p>
-            <% } else if (user.id_perfil === 3) { %>
-              <p>Aluno Profile</p>
-            <% } else if (user.id_perfil === 4) { %>
-              <p>Responsavel Profile</p>
-            <% } else if (user.id_perfil === 4) { %>
-              <p>Cordenador Profile</p>
-            <% } else { %>
-              <p>Other</p>
-            <% } %>             
-          </div>
-          <div class="card-body">
-            <div class="img-container">
-              <img id="aluno-photo" class="img-aluno" alt="Aluno Photo">
-              <!-- <img src="../upload/icon.jpg" class="img-aluno" alt="Aluno Photo"> -->
-            </div>
-            <table class="table">
-              <tbody>
-                <tr>
-                  <th scope="row">Nome</th>
-                  <td id="aluno-name"><%= user.nome_usuario %></td>
-                </tr>
-                <tr>
-                  <th scope="row">CPF</th>
-                  <td id="aluno-cpf"><%= user.cpf_usuario %></td>
-                </tr>
-                <tr>
-                  <th scope="row">Endereco</th>
-                  <td id="aluno-address"><%= user.endereco_usuario %></td>
-                </tr>
-                <tr>
-                  <th scope="row">Telefone</th>
-                  <td id="aluno-phone"><%= user.telefone_usuario %></td>
-                </tr>
-                <tr>
-                  <th scope="row">Email</th>
-                  <td id="aluno-email"><%= user.email_usuario %></td>
-                </tr>
-                <tr>
-                  <th scope="row">Data de nacimento</th>
-                  <td id="aluno-dob"><%= user.nascimento_usuario %></td>
-                </tr>
-                <tr>
-                  <th scope="row">RA</th>
-                  <td id="aluno-ra"></td>
-                </tr>
-                <tr>
-                  <th scope="row">Data de matricula</th>
-                  <td id="aluno-registration-date"></td>
-                </tr>
-                <tr>
-                  <th scope="row">Turma</th>
-                  <td id="aluno-turma"></td>
-                </tr>
-              </tbody>
-            </table>
-            <!-- <button onclick="location.href='alterarCadastro.html'" type="submit" class="btn btn-primary">Alterar</button> -->
-          </div>
-        </div>
+      <h1 class="text-center">Bem-vindo</h1>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row justify-content-center  rounded bg-body-secondary">
+      <div class="col-5 icon-container">
+        <a href="dadosCadastrais.html">
+          <img src="../../icons/iconB.png" alt="Icon">
+        </a>
+        <p>Dados Cadastrais</p>
+      </div>
+      <div class="col-5 icon-container">
+        <a href="Calendario.html">
+          <img src="../../icons/calendarB.png" alt="Calendar Icon">
+        </a>
+        <p>Calendar</p>
+      </div>
+      <!-- <div class="col-4 icon-container">
+        <a href="Calendario.html">
+          <img src="../icons/homeB.png" alt="Memo Icon">
+        </a>
+        <p>Memo</p>
+      </div> -->
+      <div class="col-5 icon-container">
+        <a href="veriNotas.html">
+          <img src="../../icons/noteB.png" alt="Note Icon">
+        </a>
+        <p>Notas</p>
+      </div>
+      <div class="col-5 icon-container">
+        <a href="veriFaltas.html">
+          <img src="../../icons/notaB.png" alt="Faltas Icon">
+        </a>
+        <p>Faltas</p>
       </div>
     </div>
   </div>
 
 
-  <a href="/logout">ログアウト</a>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+    crossorigin="anonymous"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- Bootstrap Datepicker JS -->
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+  <script src="../js">
+  </script>
 </body>
 
 </html>
