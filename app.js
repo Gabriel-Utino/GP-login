@@ -18,13 +18,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(session({
-    secret: process.env.SESSION_SECRET || 'your_secret_key',
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: { 
         secure: process.env.NODE_ENV === 'production', // 本番環境ではtrue
         httpOnly: true,
-        maxAge: 1000 * 60 * 60 // 1時間
+        maxAge: 1000 * 60 * 10 // 1時間
     }
 }));
 

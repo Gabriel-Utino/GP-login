@@ -94,6 +94,7 @@ exports.postForgotPassword = (req, res, next) => {
   crypto.randomBytes(32, (err, buffer) => {
     if (err) {
       console.log(err);
+      req.flash('error', 'パスワードリセット中にエラーが発生しました');
       return res.redirect('/forgot-password');
     }
     const token = buffer.toString('hex');
@@ -112,7 +113,7 @@ exports.postForgotPassword = (req, res, next) => {
       .then(() => {
         // リセットリンクをメールで送信
         const transporter = nodemailer.createTransport({
-          service: 'Gmail', // 使っているメールプロバイダに応じて設定
+          service: 'gmail', // 使っているメールプロバイダに応じて設定
           auth: {
             user: process.env.EMAIL_USER, // 環境変数から読み込む
             pass: process.env.EMAIL_PASS
