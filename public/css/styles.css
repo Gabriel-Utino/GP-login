@@ -83,7 +83,8 @@ button:hover {
 }
 
 #email,
-#password {
+#password,
+#password2 {
   width: 300px;
   margin-bottom: 100px;
   padding: 8px;
