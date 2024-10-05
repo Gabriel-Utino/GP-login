@@ -17,14 +17,14 @@ exports.login = async (req, res) => {
     const user = await User.findByEmail(email_usuario);
 
     if (!user) {
-      req.flash('error', 'ユーザーが見つかりません');
+      req.flash('error', 'E-mail ou senha estão incorretos -->Usuário');
       return res.redirect('/login');
     }
 
     const match = await bcrypt.compare(senha, user.senha);
 
     if (!match) {
-      req.flash('error', 'パスワードが間違っています');
+      req.flash('error', 'E-mail ou senha estão incorretos -->senha');
       return res.redirect('/login');
     }
 
@@ -39,12 +39,12 @@ exports.login = async (req, res) => {
       id_perfil: user.id_perfil
     };
 
-    console.log('ユーザーがログインしました:', req.session.user); // デバッグ用ログ
+    console.log('Usuário logado/ユーザーがログインしました:', req.session.user); // デバッグ用ログ
 
-    res.redirect('/dashboard');
+    res.redirect('/home');
   } catch (err) {
     console.error(err);
-    res.status(500).send('サーバーエラー');
+    res.status(500).send('Erro do servidor/サーバーエラー');
   }
 };
 
@@ -52,7 +52,7 @@ exports.login = async (req, res) => {
 exports.logout = (req, res) => {
   req.session.destroy(err => {
     if (err) {
-      return res.redirect('/dashboard');
+      return res.redirect('/home');
     }
     res.clearCookie('connect.sid');
     res.redirect('/login');
@@ -78,7 +78,7 @@ exports.register = async (req, res) => {
     res.redirect('/login');
   } catch (err) {
     console.error(err);
-    req.flash('error', '登録中にエラーが発生しました');
+    req.flash('error', 'Ocorreu um erro durante o registro/登録中にエラーが発生しました');
     res.redirect('/register');
   }
 };
@@ -98,7 +98,7 @@ exports.postForgotPassword = (req, res, next) => {
   crypto.randomBytes(32, async (err, buffer) => {
     if (err) {
       console.log(err);
-      req.flash('error', 'パスワードリセット中にエラーが発生しました');
+      req.flash('error', 'Ocorreu um erro ao redefinir sua senha/パスワードリセット中にエラーが発生しました');
       return res.redirect('/forgot-password');
     }
     const token = buffer.toString('hex');
@@ -107,7 +107,7 @@ exports.postForgotPassword = (req, res, next) => {
       // ユーザーを検索してリセットトークンと有効期限を保存
       const user = await User.findByEmail(email_usuario);
       if (!user) {
-        req.flash('error', 'そのメールアドレスのユーザーは見つかりません');
+        req.flash('error', 'Nenhum usuário encontrado com esse endereço de e-mail/そのメールアドレスのユーザーは見つかりません');
         return res.redirect('/forgot-password');
       }
 
@@ -119,22 +119,22 @@ exports.postForgotPassword = (req, res, next) => {
       const msg = {
         to: email_usuario,
         from: process.env.SENDGRID_SENDER, // SendGridで認証済みの送信元メールアドレス
-        subject: 'パスワードリセット',
+        subject: 'Redefinição de senha',
         html: `
-          <p>パスワードリセットのリクエストがありました。</p>
-          <p>下記のリンクをクリックして新しいパスワードを設定してください。</p>
-          <a href="${resetURL}">パスワードリセットリンク</a>
-          <p>このリンクは1時間で期限切れになります。</p>
+          <p>Você solicitou uma redefinição de senha.</p>
+          <p>Clique no link abaixo para definir uma nova senha.</p>
+          <a href="${resetURL}">link de redefinição de senha</a>
+          <p>Este link irá expirar em 1 hora.</p>
         `
       };
 
       await sgMail.send(msg);
 
-      req.flash('info', 'リセットリンクをメールで送信しました。');
+      req.flash('info', 'Enviamos a você um link de redefinição por e-mail.');
       res.redirect('/login');
     } catch (error) {
-      console.log('SendGrid エラー:', error.response ? error.response.body : error);
-      req.flash('error', 'パスワードリセット中にエラーが発生しました');
+      console.log('SendGrid Erro:', error.response ? error.response.body : error);
+      req.flash('error', 'Ocorreu um erro ao redefinir sua senha');
       res.redirect('/forgot-password');
     }
   });

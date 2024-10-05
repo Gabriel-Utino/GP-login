@@ -4,6 +4,6 @@ const userController = require('../controllers/userController');
 const isAuthenticated = require('../middleware/isAuthenticated');
 
 // ユーザー関連のルート
-router.get('/dashboard', isAuthenticated, userController.getUserProfile);
+router.get('/home', isAuthenticated, userController.getUserProfile);
 
 module.exports = router;

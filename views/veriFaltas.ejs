@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Calendario</title>
+  <title>Faltas</title>
   <!-- 追加：外部のスタイルシート -->
   <!-- <link rel="stylesheet" href="styles/professores.css" /> -->
   <!-- <link rel="stylesheet" href="styles/style.css" /> -->
@@ -60,6 +60,9 @@
             </li> -->
             <li class="nav-item">
               <a class="nav-link" href="dadosCadastrais.html">Dados Cadastrais</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout">Logout</a>
             </li><!-- 
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -98,8 +101,8 @@
           </ul>
         </div>
       </div>
-      <a href="home.html" class="mx-auto d-block">
-        <img src="../../icons/smartclass.png" alt="smartclassIcon" class="img-home">
+      <a href="/home" class="mx-auto d-block">
+        <img src="/icons/smartclass.png" alt="smartclassIcon" class="img-home">
       </a>
     </div>
   </nav>
@@ -110,12 +113,60 @@
 
   <!-- 以下、ベースのHTMLファイルのコンテンツを続ける -->
   <div class="container">
-    <div class="row">
-      <div class="col">
-        <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=America%2FSao_Paulo&bgcolor=%23A79B8E&showTitle=0&src=Z2FicmllbC51dGlub0B1c2Nzb25saW5lLmNvbS5icg&src=Y19jbGFzc3Jvb20wOWFlMjE4MkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=Y19jbGFzc3Jvb20zYjJiYzliY0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=Y19jbGFzc3Jvb21kOWE5ZDhiMkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=Y19jbGFzc3Jvb20zY2UxN2NhNEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=cHQtYnIuYnJhemlsaWFuI2hvbGlkYXlAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&src=Y19jbGFzc3Jvb20zNWI1MmU3ZEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=Y19jbGFzc3Jvb201MGQ4ZDRmMkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=Y19jbGFzc3Jvb21jYTU4NWVjM0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=Y19jbGFzc3Jvb201NGEzOWI1NUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=YWRkcmVzc2Jvb2sjY29udGFjdHNAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&color=%23039BE5&color=%23c26401&color=%230047a8&color=%23137333&color=%23202124&color=%230B8043&color=%23202124&color=%230047a8&color=%23007b83&color=%230047a8&color=%2333B679" style="border:solid 1px #777" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+    <h1>Faltas</h1>
+
+    <div class="row align-items-end">
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="selectAno">Ano:</label>
+          <select id="selectAno" class="form-control">
+            <!-- 年の選択肢を追加 -->
+            <option value="" selected>Selecione o ano</option>
+            <!-- 必要に応じて他の年も追加 -->
+          </select>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="selectSemestre">Semestre:</label>
+          <select id="selectSemestre" class="form-control">
+            <option value="" selected>Selecione o semestre</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <button id="filterButton" class="btn btn-primary" style="margin-top: 32px;">Filtrar</button>
       </div>
     </div>
+
+    <div class="containerTable" style="overflow-y: auto; max-height: 400px;">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Disciplina</th>
+            <th>Faltas</th>
+            <th>Ano</th>
+            <th>Semestre</th>
+          </tr>
+        </thead>
+        <tbody id="notaList" class="overflow-auto">
+          <!-- データはここに挿入されます -->
+        </tbody>
+      </table>
+    </div>
   </div>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -132,7 +183,7 @@
   <script
     src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 
-  <script src="../js">
+  <script src="../../js/aluno/veriFaltas.js">
   </script>
 </body>
 

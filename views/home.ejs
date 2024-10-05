@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Notas</title>
+  <title>Home</title>
   <!-- 追加：外部のスタイルシート -->
   <!-- <link rel="stylesheet" href="styles/professores.css" /> -->
   <!-- <link rel="stylesheet" href="styles/style.css" /> -->
@@ -15,6 +15,18 @@
   <!-- Bootstrap Datepicker CSS -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"
     rel="stylesheet">
+  <style>
+    .icon-container {
+      text-align: center;
+      margin: 20px;
+    }
+
+    .icon-container img {
+      width: 100px;
+      height: 100px;
+      margin: 10px;
+    }
+  </style>
 </head>
 
 <body>
@@ -60,6 +72,9 @@
             </li> -->
             <li class="nav-item">
               <a class="nav-link" href="dadosCadastrais.html">Dados Cadastrais</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout">Logout</a>
             </li><!-- 
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -98,8 +113,8 @@
           </ul>
         </div>
       </div>
-      <a href="home.html" class="mx-auto d-block">
-        <img src="../../icons/smartclass.png" alt="smartclassIcon" class="img-home">
+      <a href="/home" class="mx-auto d-block">
+        <img src="/icons/smartclass.png" alt="smartclassIcon" class="img-home">
       </a>
     </div>
   </nav>
@@ -108,68 +123,63 @@
 
 
 
+
   <!-- 以下、ベースのHTMLファイルのコンテンツを続ける -->
   <div class="container">
-    <h1>Notas</h1>
-
-    <div class="row align-items-end">
-      <div class="col-md-3">
-        <div class="form-group">
-          <label for="selectAno">Ano:</label>
-          <select id="selectAno" class="form-control">
-            <!-- 年の選択肢を追加 -->
-            <option value="" selected>Selecione o ano</option>
-            <!-- 必要に応じて他の年も追加 -->
-          </select>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="form-group">
-          <label for="selectSemestre">Semestre:</label>
-          <select id="selectSemestre" class="form-control">
-            <option value="" selected>Selecione o semestre</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-          </select>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <button id="filterButton" class="btn btn-primary" style="margin-top: 32px;">Filtrar</button>
-      </div>
-    </div>
-
-    <div class="containerTable" style="overflow-y: auto; max-height: 400px;">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Disciplina</th>
-            <th>N1</th>
-            <th>AI</th>
-            <th>AP</th>
-            <th>Ano</th>
-            <th>Semestre</th>
-          </tr>
-        </thead>
-        <tbody id="notaList" class="overflow-auto">
-          <!-- データはここに挿入されます -->
-        </tbody>
-      </table>
+    <div class="row">
+      <h1 class="text-center">Bem-vindo</h1>
     </div>
   </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <div class="container">
+    <div class="row justify-content-center  rounded bg-body-secondary">
+      <div class="col-5 icon-container">
+        <a href="dadosCadastrais">
+          <img src="/icons/iconB.png" alt="Icon">
+        </a>
+        <p>Dados Cadastrais</p>
+      </div>
+      <div class="col-5 icon-container">
+        <a href="Calendario.html">
+          <img src="../../icons/calendarB.png" alt="Calendar Icon">
+        </a>
+        <p>Calendar</p>
+      </div>
+      <!-- <div class="col-4 icon-container">
+        <a href="Calendario.html">
+          <img src="../icons/homeB.png" alt="Memo Icon">
+        </a>
+        <p>Memo</p>
+      </div> -->
+      <% if (user.id_perfil === 3) { %><!-- quando e Aluno --> 
+      <div class="col-5 icon-container">
+        <a href="veriNotas">
+          <img src="../../icons/noteB.png" alt="Note Icon">
+        </a>
+        <p>Notas</p>
+      </div>
+      <div class="col-5 icon-container">
+        <a href="veriFaltas">
+          <img src="../../icons/notaB.png" alt="Faltas Icon">
+        </a>
+        <p>Faltas</p>
+      </div>
+      <% } %>
+      <% if (user.id_perfil === 2) { %><!-- quando e Professor --> 
+        <div class="col-5 icon-container">
+          <a href="apricarNotas.html">
+            <img src="../../icons/noteB.png" alt="Note Icon">
+          </a>
+          <p>Aplicar Notas</p>
+        </div>
+        <div class="col-5 icon-container">
+          <a href="apricarFaltas.html">
+            <img src="../../icons/apricarFaltas.png" alt="Faltas Icon">
+          </a>
+          <p>Aplicar Faltas</p>
+        </div>
+      <% } %>
+    </div>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
@@ -181,8 +191,9 @@
   <!-- Bootstrap Datepicker JS -->
   <script
     src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+  </script>
+  <script>
 
-  <script src="../../js/aluno/veriNotas.js">
   </script>
 </body>
 

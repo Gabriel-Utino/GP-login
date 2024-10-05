@@ -5,13 +5,13 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dados Cadastrais</title>
+  <title>Notas</title>
   <!-- 追加：外部のスタイルシート -->
   <!-- <link rel="stylesheet" href="styles/professores.css" /> -->
   <!-- <link rel="stylesheet" href="styles/style.css" /> -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-  <link rel="stylesheet" href="../public/css/bootstrap.css">
+  <link rel="stylesheet" href="../../css/bootstrap.css">
   <!-- Bootstrap Datepicker CSS -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"
     rel="stylesheet">
@@ -60,6 +60,9 @@
             </li> -->
             <li class="nav-item">
               <a class="nav-link" href="dadosCadastrais.html">Dados Cadastrais</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout">Logout</a>
             </li><!-- 
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -98,7 +101,7 @@
           </ul>
         </div>
       </div>
-      <a href="home.html" class="mx-auto d-block">
+      <a href="/home" class="mx-auto d-block">
         <img src="/icons/smartclass.png" alt="smartclassIcon" class="img-home">
       </a>
     </div>
@@ -110,63 +113,62 @@
 
   <!-- 以下、ベースのHTMLファイルのコンテンツを続ける -->
   <div class="container">
-    <div class="row">
-      <div class="col-md-6 offset-md-3">
-        <div class="card">
-          <div class="card-header">
-            Aluno Profile
-          </div>
-          <div class="card-body">
-            <div class="img-container">
-              <img id="aluno-photo" class="img-aluno" alt="Aluno Photo">
-              <!-- <img src="../upload/icon.jpg" class="img-aluno" alt="Aluno Photo"> -->
-            </div>
-            <table class="table">
-              <tbody>
-                <tr>
-                  <th scope="row">Nome</th>
-                  <td id="aluno-name"></td>
-                </tr>
-                <tr>
-                  <th scope="row">CPF</th>
-                  <td id="aluno-cpf"></td>
-                </tr>
-                <tr>
-                  <th scope="row">Endereco</th>
-                  <td id="aluno-address"></td>
-                </tr>
-                <tr>
-                  <th scope="row">Telefone</th>
-                  <td id="aluno-phone"></td>
-                </tr>
-                <tr>
-                  <th scope="row">Email</th>
-                  <td id="aluno-email"></td>
-                </tr>
-                <tr>
-                  <th scope="row">Data de nacimento</th>
-                  <td id="aluno-dob"></td>
-                </tr>
-                <tr>
-                  <th scope="row">RA</th>
-                  <td id="aluno-ra"></td>
-                </tr>
-                <tr>
-                  <th scope="row">Data de matricula</th>
-                  <td id="aluno-registration-date"></td>
-                </tr>
-                <tr>
-                  <th scope="row">Turma</th>
-                  <td id="aluno-turma"></td>
-                </tr>
-              </tbody>
-            </table>
-            <!-- <button onclick="location.href='alterarCadastro.html'" type="submit" class="btn btn-primary">Alterar</button> -->
-          </div>
+    <h1>Notas</h1>
+
+    <div class="row align-items-end">
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="selectAno">Ano:</label>
+          <select id="selectAno" class="form-control">
+            <!-- 年の選択肢を追加 -->
+            <option value="" selected>Selecione o ano</option>
+            <!-- 必要に応じて他の年も追加 -->
+          </select>
         </div>
       </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="selectSemestre">Semestre:</label>
+          <select id="selectSemestre" class="form-control">
+            <option value="" selected>Selecione o semestre</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <button id="filterButton" class="btn btn-primary" style="margin-top: 32px;">Filtrar</button>
+      </div>
+    </div>
+
+    <div class="containerTable" style="overflow-y: auto; max-height: 400px;">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Disciplina</th>
+            <th>N1</th>
+            <th>AI</th>
+            <th>AP</th>
+            <th>Ano</th>
+            <th>Semestre</th>
+          </tr>
+        </thead>
+        <tbody id="notaList" class="overflow-auto">
+          <!-- データはここに挿入されます -->
+        </tbody>
+      </table>
     </div>
   </div>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -183,6 +185,7 @@
   <script
     src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 
+  <script src="/js/aluno/veriNotas.js">
   </script>
 </body>
 

@@ -7,12 +7,12 @@ exports.getUserProfile = async (req, res) => {
         const [rows] = await pool.query('SELECT * FROM usuario WHERE id_usuario = ?', [userId]);
         
         if (rows.length > 0) {
-            res.render('dashboard', { user: rows[0] });
+            res.render('home', { user: rows[0] });
         } else {
             res.redirect('/login');
         }
     } catch (err) {
         console.error(err);
-        res.status(500).send('サーバーエラー');
+        res.status(500).send('Erro do servidor/サーバーエラー');
     }
 };
