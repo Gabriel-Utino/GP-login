@@ -4,9 +4,9 @@ const session = require('express-session')
 const flash = require('connect-flash')
 const path = require('path')
 const dotenv = require('dotenv')
-const passport = require('./config/passport') // Passportの設定を読み込み
+const passport = require('../config/passport') // Passportの設定を読み込み
 
-const authRoutes = require('./routes/authRoutes')
+const authRoutes = require('../routes/authRoutes')
 // 他のルートもインポート
 
 dotenv.config()
@@ -44,8 +44,6 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use('/', authRoutes)
 // 他のルートもマウント
 
-// ダッシュボードルート
-const isAuthenticated = require('./middleware/isAuthenticated')
 
 app.get('/dashboard', (req, res) => {
   if (!req.session.user) {
